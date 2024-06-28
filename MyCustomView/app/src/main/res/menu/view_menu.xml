@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/changeColor"
+        android:title="Change Color">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/red"
+                    android:title="RED" />
+                <item
+                    android:id="@+id/green"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:title="GREEN" />
+                <item
+                    android:id="@+id/blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:title="BLUE" />
+            </group>
+        </menu>
+    </item>
+</menu>
