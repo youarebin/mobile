@@ -34,6 +34,11 @@ class DetailActivity : AppCompatActivity() {
 
         // MainActivity 로부터 전달받은 이미지의 URL
         imageUrl = intent.getStringExtra("url")
+        val imageFileName = "${FileManager.getCurrentTime()}.jpg"
+
+        Glide.with(this@DetailActivity)
+            .load(imageUrl)
+            .into(detailBinding.ivBookCover)
 
         detailBinding.btnSave.setOnClickListener {
             Glide.with(this)
@@ -44,7 +49,7 @@ class DetailActivity : AppCompatActivity() {
                         resource: Bitmap,
                         transition: Transition<in Bitmap>?
                     ) {
-                        val imageFile = File("${filesDir}/images", "${FileManager.getCurrentTime()}.jpg")
+                        val imageFile = File("${filesDir}/images", imageFileName)
                         val fos = FileOutputStream(imageFile)
                         resource.compress(Bitmap.CompressFormat.JPEG, 100, fos)
                         fos.close()
@@ -58,7 +63,7 @@ class DetailActivity : AppCompatActivity() {
         }
 
         detailBinding.btnRead.setOnClickListener {
-            val imageFile = File(filesDir, "/images/images/${FileManager.getImageFileName(imageUrl.toString())}.jpg")
+            val imageFile = File("${filesDir}/images", imageFileName)
             val bitmap = BitmapFactory.decodeFile(imageFile.path)
             detailBinding.ivBookCover.setImageBitmap(bitmap)
         }
@@ -70,7 +75,7 @@ class DetailActivity : AppCompatActivity() {
         }
 
         detailBinding.btnRemove.setOnClickListener {
-            val deleteFile = File(filesDir, "/images/images/${FileManager.getImageFileName(imageUrl.toString())}.jpg")
+            val deleteFile = File("${filesDir}/images", imageFileName)
             deleteFile.delete()
         }
     }

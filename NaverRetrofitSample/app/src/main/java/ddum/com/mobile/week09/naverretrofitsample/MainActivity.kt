@@ -67,8 +67,8 @@ class MainActivity : AppCompatActivity() {
 
         // 필요할 경우 파일 디렉토리 생성
         // 내부저장소 전용위치에 images 하위 디렉토리 생성
-//        Log.d(TAG, "${filesDir}")
-//        Log.d(TAG, "${cacheDir}")
+        Log.d(TAG, "${filesDir}")
+        Log.d(TAG, "${cacheDir}")
 //
 //        //파일 읽기
 //        val writeData = "Mobile Application"
@@ -90,7 +90,11 @@ class MainActivity : AppCompatActivity() {
 //        val imageFile = File(filesDir, "image.jpg")
 //        val bitmap = BitmapFactory.decodeFile(imageFile.path)
 //        binding.imageView.setImageBitmap(bitmap)
+        FileManager.createSubDirectory(filesDir, "images")
 
+        Glide.with(this)
+            .load("${filesDir}/images/image.jpg")
+            .into(binding.imageView)
 
         adapter.setOnItemClickListener(object: BookAdapter.OnItemClickListener {
             override fun onItemClick(view: View, position: Int) {
